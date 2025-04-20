@@ -1,48 +1,196 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_app/reusable_widgets.dart'; //isn't used Yet
+import 'package:flutter_app/global_variables.dart';
 
 // import 'reusable_widgets.dart';
 
 void main() {
-  runApp(const AppBarApp());
+  runApp(FlutterApp());
 }
 
-class AppBarApp extends StatelessWidget {
-  const AppBarApp({super.key});
+class FlutterApp extends StatelessWidget {
+  FlutterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen(),);
+    return MaterialApp(
+      initialRoute: '/pet',
+      routes: {
+        '/settings': (context) => SettingsScreen(),
+        '/pet': (context) => HomeScreen(),
+        '/shop': (context) => ShopScreen(),
+      },);
   }
 }
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('PETNAME'),
+          title: Text(petName),
           actions: <Widget> [
               Padding(padding: const EdgeInsets.only(right: 16.0),
               child: RichText(text: TextSpan(
                 children: [
                   WidgetSpan(child: Icon(Icons.savings)),
-                  TextSpan(text: "0", style: TextStyle(color: Colors.black, fontSize: 20)),
+                  TextSpan(text: "$currentMoney", style: TextStyle(color: Colors.black, fontSize: 20)),
                 ]
               )
               )
               )
           ],
-        )
-
+      ),
+        body: Center(),
+        bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (int index) {
+            if (index == 0) {
+              currentIndex = 0;
+              Navigator.pushNamed(context, '/settings');
+            } else if (index == 1) {
+              currentIndex = 1;
+              Navigator.pushNamed(context, '/pet');
+            } else if (index == 2) {
+              currentIndex = 2;
+              Navigator.pushNamed(context, '/shop');
+            }
+          },
+          indicatorColor: Colors.blue,
+          selectedIndex: currentIndex,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.favorite),
+              label: 'Pet',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.shopping_cart),
+              label: 'Shop',
+              )
+          ]
+        ),
       )
     );
 }
 }
 
-// class SettingsScreen extends StatelessWidget {
-//   const SettingsScreen({super.key});
+class SettingsScreen extends StatelessWidget {
+  SettingsScreen({super.key});
 
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(petName),
+          actions: <Widget> [
+              Padding(padding: const EdgeInsets.only(right: 16.0),
+              child: RichText(text: TextSpan(
+                children: [
+                  WidgetSpan(child: Icon(Icons.savings)),
+                  TextSpan(text: "$currentMoney", style: TextStyle(color: Colors.black, fontSize: 20)),
+                ]
+              )
+              )
+              )
+          ],
+      ),
+      body: Center(
+        child: Text('Settings Screen'),
+      ),
+      bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (int index) {
+            if (index == 0) {
+              currentIndex = 0;
+              Navigator.pushNamed(context, '/settings');
+            } else if (index == 1) {
+              currentIndex = 1;
+              Navigator.pushNamed(context, '/pet');
+            } else if (index == 2) {
+              currentIndex = 2;
+              Navigator.pushNamed(context, '/shop');
+            }
+          },
+          indicatorColor: Colors.blue,
+          selectedIndex: currentIndex,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.favorite),
+              label: 'Pet',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.shopping_cart),
+              label: 'Shop',
+              )
+          ]
+        ),
+    );
+  }
+}
+
+class ShopScreen extends StatelessWidget {
+  const ShopScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(petName),
+          actions: <Widget> [
+              Padding(padding: const EdgeInsets.only(right: 16.0),
+              child: RichText(text: TextSpan(
+                children: [
+                  WidgetSpan(child: Icon(Icons.savings)),
+                  TextSpan(text: "$currentMoney", style: TextStyle(color: Colors.black, fontSize: 20)),
+                ]
+              )
+              )
+              )
+          ],
+      ),
+      body: Center(
+        child: Text('Shop Screen'),
+      ),
+      bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (int index) {
+            if (index == 0) {
+              currentIndex = 0;
+              Navigator.pushNamed(context, '/settings');
+            } else if (index == 1) {
+              currentIndex = 1;
+              Navigator.pushNamed(context, '/pet');
+            } else if (index == 2) {
+              currentIndex = 2;
+              Navigator.pushNamed(context, '/shop');
+            }
+          },
+          indicatorColor: Colors.blue,
+          selectedIndex: currentIndex,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.favorite),
+              label: 'Pet',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.shopping_cart),
+              label: 'Shop',
+              )
+          ]
+        ),
+    );
+  }
+}
