@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global_variables.dart';
+import 'package:flutter_app/reusable_widgets.dart';
 
 
 class ShopScreen extends StatelessWidget {
@@ -25,36 +26,7 @@ class ShopScreen extends StatelessWidget {
       body: Center(
         child: Text('Shop Screen'),
       ),
-      bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            if (index == 0) {
-              currentIndex = 0;
-              Navigator.pushNamed(context, '/settings');
-            } else if (index == 1) {
-              currentIndex = 1;
-              Navigator.pushNamed(context, '/pet');
-            } else if (index == 2) {
-              currentIndex = 2;
-              Navigator.pushNamed(context, '/shop');
-            }
-          },
-          indicatorColor: Colors.blue,
-          selectedIndex: currentIndex,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.favorite),
-              label: 'Pet',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.shopping_cart),
-              label: 'Shop',
-              )
-          ]
-        ),
+      bottomNavigationBar: NavBar()
     );
   }
 }
