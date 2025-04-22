@@ -105,3 +105,37 @@ class TextfieldCode extends StatelessWidget {
     );
   }
 }
+
+Future<void> showCustomDialog(BuildContext context, String title, String description, int moneyAmount, bool isOwned, dynamic onPressed) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(description),
+        actions: <Widget>[
+          if (isOwned) ...[
+            Text('Owned!'),
+          ] else ...[
+            Text('Price: $moneyAmount'),
+          ],
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              onPressed(); // Call the onPressed function passed as a parameter
+              // Close the dialog
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () {
+              // Close the dialog without any action
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

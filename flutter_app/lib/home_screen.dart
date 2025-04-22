@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getUserPreferences();
     return Scaffold(
         appBar: TopAppbar(),
         body: Stack(
@@ -26,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                 //   image: AssetImage(placeholderImagePath),
                 //   fit: BoxFit.cover,
                 // ), //Can load in background image
-                color: Colors.grey,
+                color: currentBackGroundColour,
               ),
             ),
             Center(
