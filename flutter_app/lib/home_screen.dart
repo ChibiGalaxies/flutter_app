@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global_variables.dart';
 import 'package:flutter_app/reusable_widgets.dart';
 
+//Homescreen, center screen of the app, User can see their pet, sugar amount through bar and add sugar through a button
+//Additional code for appbar and navbar are in resusable_widgets.dart
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -16,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() { 
     super.initState();
-    getUserPreferences(); // Load user preferences when the app starts
+    getPreferences(); // Load user preferences when the app starts
   }
 
 
@@ -28,23 +31,19 @@ class _HomeScreenState extends State<HomeScreen> {
           alignment: Alignment.center,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
-                // image: DecorationImage(
-                //   image: AssetImage(placeholderImagePath),
-                //   fit: BoxFit.cover,
-                // ), //Can load in background image
+              decoration: BoxDecoration( //Loads the current background colour, this is currently a plain colour
                 color: currentBackGroundColour,
               ),
             ),
             Center(
-              child: Image.asset(
+              child: Image.asset( //The actual Image of the pet, this is currently a placeholder image
                 placeholderImagePath,
                 width: 200,
                 height: 200,
               ),
             ),
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.bottomRight, //Button for the sugar measuring screen
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: FloatingActionButton(
@@ -55,12 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Align(
+            Align( //Sugar measuring progress indicator, shows the currently measured sugar amount
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                // child: 
-                
+                child: SugarMeasuringProgressIndicator()
               ),
             )
           ],

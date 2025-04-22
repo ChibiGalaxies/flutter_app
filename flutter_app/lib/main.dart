@@ -17,7 +17,7 @@ class FlutterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/pet',
-      routes: {
+      routes: { //Loads all the potential screens in the app
         '/settings': (context) => SettingsScreen(),
         '/pet': (context) => HomeScreen(),
         '/shop': (context) => ShopScreen(),

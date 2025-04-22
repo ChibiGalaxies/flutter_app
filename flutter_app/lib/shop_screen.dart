@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global_variables.dart';
 import 'package:flutter_app/reusable_widgets.dart';
 
+//Screen that runs the shop, allows you to buy pets and backgrounds for the pet
+//Code for tabbar, navbar and dialog is stored on reusable_widgets.dart
+//Dialog has the onPressed Function here due to the need to access the pets and background maps depending on the tab selected
+
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
 
@@ -31,8 +35,6 @@ class _ShopScreenState extends State<ShopScreen> {
               )
           ],
           bottom: TabBar(
-            // controller: TabController(length: 2, vsync: ScrollableState()),
-            // indicatorColor: Colors.blue,
             tabs: <Widget> [
               Tab(text: 'Pets'),
               Tab(text: 'Backgrounds'),
@@ -65,9 +67,9 @@ class _ShopScreenState extends State<ShopScreen> {
                             } else {
                               // Proceed with the purchase
                               if (currentMoney >= (petsPricesList[boughtPetsList.keys.elementAt(index)] ?? 0)) {
-                                  currentMoney -= (petsPricesList[boughtPetsList.keys.elementAt(index)] ?? 0); // Deduct the money amount from currentMoney
+                                  currentMoney -= (petsPricesList[boughtPetsList.keys.elementAt(index)] ?? 0); 
                                   boughtPetsList[boughtPetsList.keys.elementAt(index)] = true; // Set the pet as owned
-                                  setUserPreferences(); // Save the new currentMoney value
+                                  setPreferences(); // Save the new currentMoney value
                               } else {
                                 // Show a message indicating insufficient funds
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -101,16 +103,16 @@ class _ShopScreenState extends State<ShopScreen> {
                           boughtBackgroundsList[boughtBackgroundsList.keys.elementAt(index)] ?? false, //isOwned 
                           () { //onPressed Function
                             if (boughtBackgroundsList[boughtBackgroundsList.keys.elementAt(index)] == true) {
-                              // Show a message indicating the pet is already owned
+                              // Show a message indicating the background is already owned
                               ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('You already own this backgrounds!')),
+                              SnackBar(content: Text('You already own this background!')),
                               );
                             } else {
                               // Proceed with the purchase
                               if (currentMoney >= (backgroundsPricesList[boughtBackgroundsList.keys.elementAt(index)] ?? 0)) {
-                                  currentMoney -= (backgroundsPricesList[boughtBackgroundsList.keys.elementAt(index)] ?? 0); // Deduct the money amount from currentMoney
-                                  boughtBackgroundsList[boughtBackgroundsList.keys.elementAt(index)] = true; // Set the pet as owned
-                                  setUserPreferences(); // Save the new currentMoney value
+                                  currentMoney -= (backgroundsPricesList[boughtBackgroundsList.keys.elementAt(index)] ?? 0); 
+                                  boughtBackgroundsList[boughtBackgroundsList.keys.elementAt(index)] = true; // Set the background as owned
+                                  setPreferences(); // Save the new currentMoney value
                               } else {
                                 // Show a message indicating insufficient funds
                                 ScaffoldMessenger.of(context).showSnackBar(

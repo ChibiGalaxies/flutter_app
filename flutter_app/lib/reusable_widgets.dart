@@ -139,3 +139,23 @@ Future<void> showCustomDialog(BuildContext context, String title, String descrip
     },
   );
 }
+class SugarMeasuringProgressIndicator extends StatefulWidget {
+  const SugarMeasuringProgressIndicator({super.key});
+
+  @override
+  State<SugarMeasuringProgressIndicator> createState() => _SugarMeasuringProgressIndicator();
+}
+
+class _SugarMeasuringProgressIndicator extends State<SugarMeasuringProgressIndicator> with SingleTickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return RotatedBox(quarterTurns: -1,
+      child: LinearProgressIndicator(
+        value: sugarAmount / 50.0, 
+        minHeight: 20.0,
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+        borderRadius: BorderRadius.circular(20.0),
+      ),);
+  }
+
+}

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global_variables.dart';
 import 'package:flutter_app/reusable_widgets.dart';
 
+//Most of the code responsible for running the sugar input screen, this is found through a button on homescreen.
+//Additional code for appbar and navbar are in resusable_widgets.dart
+
 class SugarMeasuringScreen extends StatefulWidget {
   const SugarMeasuringScreen({super.key});
 
@@ -20,6 +23,7 @@ class _SugarMeasuringScreenState extends State<SugarMeasuringScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                //Loads a title and a textfield for the sugar input
                 Text("Sugar Tracker", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 TextfieldCode(
                   hintText: 'Input sugar amount', 
