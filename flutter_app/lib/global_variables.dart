@@ -8,8 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
   int currentIndex = 1;
   var currentBackGroundColour = Colors.grey;
   var currentPetImagePath = "assets/placeholder.png";
+  double sugarAmount = 0.0;
 
-  //TODO: Change this from Maps to an SQL database or something similar.
+  //TO-DO: Change this from Maps to an SQL database or something similar.
   Map<String, bool> boughtPetsList = {
     'default': true,
     'flame': false,
