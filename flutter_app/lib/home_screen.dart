@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global_variables.dart';
 import 'package:flutter_app/reusable_widgets.dart';
 
-// ignore: must_be_immutable
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
-  // void initState() { 
-  //   // super.initState();
-  //   getUserPreferences(); // Load user preferences when the app starts
-  // }
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+// ignore: must_be_immutable
+class _HomeScreenState extends State<HomeScreen> {
+
+
+  @override
+  void initState() { 
+    super.initState();
+    getUserPreferences(); // Load user preferences when the app starts
+  }
 
 
   @override
@@ -41,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: FloatingActionButton(
                   onPressed: () {
-                    // Add your action here
+                    Navigator.pushNamed(context, '/sugar');
                   },
                   child: Icon(Icons.add),
                 ),
